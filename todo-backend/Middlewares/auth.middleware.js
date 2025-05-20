@@ -7,7 +7,7 @@ const auth = (req, res, next) => {
     jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
       if(decoded){
         req.body.userID = decoded.userID;
-        req.body.suserEmail = decoded.userEmail;
+        req.body.userEmail = decoded.userEmail;
         next();
       } else {
         res.status(403).send({msg: "You do not have relevant permissions!"})

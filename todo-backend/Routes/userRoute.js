@@ -8,12 +8,12 @@ const userRouter = Router();
 
 userRouter.post("/register", async (req, res) => {
   const { email, password } = req.body;
-  if (email !== undefined) {
+  if (email !== undefined || email != "") {
     const userExist = await UserModel.findOne({ email });
-    console.log(userExist, "user");
+    // console.log(userExist, "user");
     if (!userExist) {
       bcrypt.hash(password, 5, async function (err, hash) {
-        console.log(hash, "hash");
+        // console.log(hash, "hash");
         if (hash) {
           const user = await UserModel({ email, password: hash });
           await user.save();
@@ -32,6 +32,7 @@ userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body; //arun.k@meritto.com wqerwetl234
   try {
     const userExist = await UserModel.findOne({ email });
+    console.log(userExist, "userExist")
     if (userExist) {
         bcrypt.compare(password, userExist.password, function (err, result) {
       if(result){
@@ -51,3 +52,4 @@ userRouter.post("/login", async (req, res) => {
 });
 
 module.exports = userRouter;
+
