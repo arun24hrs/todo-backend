@@ -5,7 +5,8 @@ const taskSchema = mongoose.Schema({
     taskName: {type: String, required: true},
     dueDate: {type: String, required: true},
     isPrior: {type: Boolean, required: true},
-    isComplete: {type: Boolean, required: true}
+    isComplete: {type: Boolean, required: true},
+    isPending: {type: Boolean, required: true}
 });
 
 const TaskModel = mongoose.model("task", taskSchema);

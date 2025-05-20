@@ -4,9 +4,9 @@ const TaskModel = require("../Model/tasksModel.js");
 const taskRouter = Router();
 
 taskRouter.post("/add", async (req, res) => {
-  const { userID, taskName, dueDate, isPrior, isComplete } = req.body;
+  const { userID, taskName, dueDate, isPrior, isComplete, isPending } = req.body;
   try {
-    const newTask = await TaskModel({ userID, taskName, dueDate, isPrior, isComplete });
+    const newTask = await TaskModel({ userID, taskName, dueDate, isPrior, isComplete, isPending });
     await newTask.save();
     res.status(200).send({msg: "Task added successfully."})
   } catch (error) {
