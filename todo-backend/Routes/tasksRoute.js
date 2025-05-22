@@ -40,6 +40,7 @@ taskRouter.delete("/delete/task/:id", async(req, res)=>{
 
 taskRouter.get("/all", async (req, res) => {
   const { userID, userEmail } = req.body;
+  console.log(req.body, "body")
   const allTasks = await TaskModel.find({ userID });
   if(allTasks.length){
     const relvantTasks = allTasks.filter((el)=> el.userID == userID);
