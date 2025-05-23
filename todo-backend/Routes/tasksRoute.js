@@ -5,6 +5,7 @@ const taskRouter = Router();
 
 taskRouter.post("/add", async (req, res) => {
   const { userID, taskName, dueDate, isPrior, isComplete, isPending } = req.body;
+  console.log(req.body, "body");
   try {
     const newTask = await TaskModel({ userID, taskName, dueDate, isPrior, isComplete, isPending });
     await newTask.save();
