@@ -5,7 +5,6 @@ const taskRouter = Router();
 
 taskRouter.post("/add", async (req, res) => {
   const { userID, taskName, dueDate, isPrior, isComplete, isPending } = req.body;
-  console.log(req.body, "body");
   try {
     const newTask = await TaskModel({ userID, taskName, dueDate, isPrior, isComplete, isPending });
     await newTask.save();
@@ -16,7 +15,8 @@ taskRouter.post("/add", async (req, res) => {
   }
 });
 
-taskRouter.patch("/edit/task/:id", async(req,res)=>{
+taskRouter.patch("/edit/:id", async(req,res)=>{
+  console.log(req.params, "param")
   const {id} = req.params;
   const taskToEdit = await TaskModel.findOne({id: req.body.taskID});
     try {
